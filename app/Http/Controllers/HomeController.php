@@ -1,0 +1,104 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Post;
+use App\Models\Galery;
+use App\Models\Profile;
+
+
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+    public function beranda()
+    {
+        $posts = Post::where('status', 'published')
+        ->whereDoesntHave('kategori', function($q) {
+            $q->where('judul', 'Peta Sekolah');
+        })
+        ->with(['kategori', 'user', 'galeries.fotos'])
+        ->latest()
+        ->take(5)
+        ->get();
+
+        //ambil semua galeri yang punya foto, beserta relasi post dan foto
+        $galeries = Galery::whereHas('fotos')
+        ->whereHas('post', function($query) {
+            $query->whereDoesntHave('kategori', function($q) {
+                $q->where('judul', 'Peta Sekolah');
+            });
+        })
+        ->with(['fotos', 'post.user', 'post.kategori'])
+        ->where('status',true)
+        ->latest()
+        ->take(5)
+        ->get();
+
+        //peta sekolah: ambil galeri yang post nya berkategori "peta sekolah"
+        $petaSekolah = Galery::whereHas('post.kategori', function ($query){
+            $query->where('judul', 'Peta Sekolah');
+        })
+        ->with(['fotos', 'post'])
+        ->latest()
+        ->first();
+
+        return view('beranda', compact('posts', 'galeries', 'petaSekolah'));
+        
+    }
+
+    public function galeri()
+    {
+        $galeries = Galery::whereHas('fotos')
+        ->whereHas('post', function($query) {
+            $query->whereDoesntHave('kategori', function($q) {
+                $q->where('judul', 'Peta Sekolah');
+            });
+        })
+        ->with(['fotos', 'post.user', 'post.kategori'])
+        ->where('status',true)
+        ->latest()
+        ->get();
+
+        return view('galeri', compact('galeries'));
+    }
+
+    public function tentangKami()
+    {
+        $profile = Profile::first();
+        return view('tentangKami', compact('profile'));
+    }
+
+    public function detailGaleri($id)
+    {
+        $galeri = Galery::with(['post.user', 'post.kategori', 'fotos'])->findOrFail($id);
+        
+        $latestPosts = Post::where('status', 'published')
+            ->whereDoesntHave('kategori', function($q) {
+                $q->where('judul', 'Peta Sekolah');
+            })
+            ->with(['kategori', 'user', 'galeries.fotos'])
+            ->latest()
+            ->take(3)
+            ->get();
+            
+        return view('detail', compact('galeri', 'latestPosts'));
+    }
+
+    public function detailPost($id)
+    {
+        $post = Post::with(['user', 'kategori', 'galeries.fotos'])->findOrFail($id);
+        
+        $latestPosts = Post::where('status', 'published')
+            ->whereDoesntHave('kategori', function($q) {
+                $q->where('judul', 'Peta Sekolah');
+            })
+            ->with(['kategori', 'user', 'galeries.fotos'])
+            ->where('id', '!=', $post->id)
+            ->latest()
+            ->take(3)
+            ->get();
+            
+        return view('detailPost', compact('post', 'latestPosts'));
+    }
+    
+}
