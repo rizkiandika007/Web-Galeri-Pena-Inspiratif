@@ -29,3 +29,26 @@ var $carousel = $('.main-carousel').flickity();
 $('.button--previous').on('click', function() { $carousel.flickity('previous'); });
 $('.button--next').on('click', function() { $carousel.flickity('next'); });
 </script>
+
+<script>
+    const btn = document.getElementById('hamburger-btn');
+    const menu = document.getElementById('mobile-menu');
+    const lines = btn.querySelectorAll('.hamburger-line');
+
+    btn.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+
+        // Animasi hamburger → X
+        if (!isOpen) {
+            lines[0].style.transform = 'translateY(6px) rotate(45deg)';
+            lines[1].style.opacity = '0';
+            lines[2].style.transform = 'translateY(-6px) rotate(-45deg)';
+        } else {
+            lines[0].style.transform = '';
+            lines[1].style.opacity = '1';
+            lines[2].style.transform = '';
+        }
+    });
+</script>

@@ -9,8 +9,7 @@
                     $postJudul = $galery->post->judul ?? 'Galeri Sekolah';
                 @endphp
                 <a href="{{ route('post.detail', $galery->post->id) }}"
-                    class="group relative block w-full overflow-hidden rounded-2xl bg-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl outline-none"
-                    style="aspect-ratio: 16/10;">
+                    class="group relative block w-full aspect-[4/3] sm:aspect-[16/10] min-h-[250px] overflow-hidden rounded-[20px] bg-slate-200 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] outline-none">
                     
                     @if($firstFoto)
                         <img src="{{ asset('storage/' . $firstFoto->file) }}"
@@ -53,4 +52,4 @@
             @endauth
         </div>
     @endif
-</section>
+</section>

@@ -1,36 +1,39 @@
 <!-- PETA SEKOLAH -->
-<section id="Peta-Sekolah" class="max-w-[1130px] mx-auto" style="margin-top: 72px;">
-    <div class="text-center" style="margin-bottom: 28px;">
-        <span class="section-badge">PETA SEKOLAH</span>
-        <h2 class="section-title">Denah & Lokasi Ruangan<br>SMK Indonesia Digital</h2>
+<section id="Peta-Sekolah" class="max-w-[1200px] mx-auto px-4 lg:px-8 mt-16 md:mt-24 mb-10 md:mb-20">
+    <div class="text-center mb-10 md:mb-12">
+        <span class="section-badge mb-3 inline-block">PETA SEKOLAH</span>
+        <h2 class="section-title text-[24px] md:text-[32px] leading-tight">Denah & Lokasi Ruangan<br>Pena Inspiratif</h2>
     </div>
 
-    <div class="bg-white overflow-hidden flex" style="border-radius: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); border: 1px solid #EEF0F7;">
-        <div class="flex flex-col justify-center" style="width: 40%; padding: 48px 40px; gap: 16px;">
-            <h3 class="font-bold" style="font-size: 20px; color: #1A1D26;">Fasilitas Lengkap</h3>
-            <p class="text-[#A3A6AE]" style="font-size: 13px; line-height: 1.7;">
-                Jelajahi denah sekolah kami untuk menemukan ruang kelas, laboratorium komputer, perpustakaan, hingga fasilitas olahraga dengan mudah.
+    <div class="bg-white overflow-hidden flex flex-col lg:flex-row border border-gray-100 rounded-3xl lg:rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.06)]">
+        <div class="flex flex-col justify-center w-full lg:w-5/12 p-8 lg:p-14 gap-4 md:gap-5">
+            <h3 class="font-extrabold text-2xl text-gray-900 leading-tight">Fasilitas Lengkap</h3>
+            <p class="text-gray-500 text-[15px] leading-relaxed">
+                Jelajahi denah sekolah kami untuk menemukan ruang kelas, laboratorium komputer, perpustakaan, hingga fasilitas olahraga dengan mudah dan interaktif.
             </p>
 
             {{-- $petaSekolah → variabel dari controller, berisi satu record galeri khusus peta --}}
             {{-- $petaSekolah->fotos → relasi hasMany ke tabel 'fotos' --}}
             @if($petaSekolah && $petaSekolah->fotos->isNotEmpty())
                 {{-- $petaSekolah->fotos->first()->file → kolom 'file' dari tabel 'fotos' --}}
-                <a href="{{ asset('storage/' . $petaSekolah->fotos->first()->file) }}" target="_blank" class="nav-cta" style="width: fit-content; margin-top: 8px; display: inline-flex; align-items: center; gap: 6px;">
-                    Lihat Peta HD ↗
+                <a href="{{ asset('storage/' . $petaSekolah->fotos->first()->file) }}" target="_blank" class="nav-cta mt-4 md:mt-6 w-fit inline-flex items-center gap-2 group font-bold px-6 py-3 rounded-full hover:bg-blue-700 hover:shadow-lg transition-all text-[15px]">
+                    Lihat Peta Resolusi Tinggi 
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </a>
             @else
-                <span class="text-[#A3A6AE] font-semibold" style="display: inline-block; padding: 10px 20px; background: #F1F5F9; border-radius: 50px; font-size: 13px; width: fit-content; margin-top: 8px;">Segera Hadir</span>
+                <span class="text-gray-500 font-semibold inline-block px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] w-fit mt-4">Peta Segera Hadir</span>
             @endif
         </div>
 
-        <div style="width: 60%; height: 360px;" class="relative">
+        <div class="w-full lg:w-7/12 h-[260px] sm:h-[360px] lg:h-[480px] relative border-t lg:border-t-0 lg:border-l border-gray-100 group">
             {{-- $petaSekolah → jika ada data, tampilkan gambar peta dari storage --}}
             @if($petaSekolah && $petaSekolah->fotos->isNotEmpty())
-                <img src="{{ asset('storage/' . $petaSekolah->fotos->first()->file) }}" class="w-full h-full object-cover" alt="Peta Sekolah" />
+                <img src="{{ asset('storage/' . $petaSekolah->fotos->first()->file) }}" class="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105" alt="Peta Sekolah" />
+                <div class="absolute inset-0 bg-black/5 md:group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
             @else
-                <div class="flex items-center justify-center w-full h-full text-[#A3A6AE] font-medium" style="background: #F1F5F9;">
-                    Peta Sekolah Belum Tersedia
+                <div class="flex flex-col items-center justify-center w-full h-full text-gray-400 font-medium bg-gray-50/50 gap-3">
+                    <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A2 2 0 013 15.489V5.282a2 2 0 012.894-1.789L10 5l5-2.5 4.553 2.276A2 2 0 0121 6.511v10.207a2 2 0 01-2.894 1.789L14 20l-5 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 20V5M14 20V5"/></svg>
+                    <span>Peta Temporer Absen / Kosong</span>
                 </div>
             @endif
         </div>
