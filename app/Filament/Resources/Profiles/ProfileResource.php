@@ -20,6 +20,9 @@ class ProfileResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-circle';
 
+    // manajemen konten
+    protected static string|\UnitEnum|null $navigationGroup = 'Profile';
+
     protected static ?string $recordTitleAttribute = 'judul';
 
     public static function canCreate(): bool

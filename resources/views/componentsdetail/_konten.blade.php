@@ -17,34 +17,6 @@
         <div class="content-main">
             <div class="article-body">
 
-                <!-- Header badge row -->
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 2px solid rgba(24,95,165,0.1);">
-                    <span class="kategori-tag">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 7v8"/><path d="M12 7v8"/><path d="M16 7v8"/></svg>
-                        {{ $post->kategori->judul ?? 'Umum' }}
-                    </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #64748B; background: #F1F5F9; padding: 5px 12px; border-radius: 50px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        {{ $post->created_at->translatedFormat('d F Y') }}
-                    </span>
-                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #64748B; background: #F1F5F9; padding: 5px 12px; border-radius: 50px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        {{ $post->user->name ?? 'Admin' }}
-                    </span>
-                </div>
-
-                <!-- Foto Utama -->
-                @if($allFotos->isNotEmpty())
-                <figure style="margin-bottom: 28px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(24,95,165,0.12);">
-                    <img src="{{ asset('storage/' . $allFotos->first()->file) }}"
-                        alt="{{ $post->judul }}"
-                        style="width: 100%; height: 320px; object-fit: cover; display: block;" />
-                    <figcaption style="font-size: 13px; text-align: center; font-style: italic; padding: 10px 16px; background: var(--primary-lightest); color: var(--primary-dark);">
-                        Kategori: {{ $post->kategori->judul ?? 'Sekolah' }}
-                    </figcaption>
-                </figure>
-                @endif
-
                 <!-- Article Body -->
                 <div class="prose-content" id="Content-wrapper">
                     {!! $post->isi ?? '<p>Tidak ada deskripsi untuk informasi ini.</p>' !!}
@@ -184,3 +156,32 @@
 
         </div>
     </section>
+
+    <!-- LIGHTBOX OVERLAY -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-close" onclick="closeLightbox(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+        <img src="" alt="Full Screen Documentation" id="lightbox-img" />
+    </div>
+
+    <script>
+        // Buka Lightbox
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Lock scroll
+        }
+
+        // Tutup Lightbox
+        function closeLightbox(e) {
+            // Hanya tutup jika klik di area background gelap atau tombol close
+            if (e.target.id === 'lightbox' || e.target.closest('.lightbox-close')) {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Unlock scroll
+            }
+        }
+    </script>

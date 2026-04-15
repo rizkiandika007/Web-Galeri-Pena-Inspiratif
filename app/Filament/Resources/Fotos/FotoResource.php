@@ -20,6 +20,9 @@ class FotoResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-camera';
 
+    // manajemen konten
+    protected static string|\UnitEnum|null $navigationGroup = 'Konten';
+
     protected static ?string $recordTitleAttribute = 'judul';
 
     public static function form(Schema $schema): Schema

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Galery;
 use App\Models\Profile;
-
+use App\Models\Pengurus;
 
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $posts = Post::where('status', 'published')
         ->whereDoesntHave('kategori', function($q) {
-            $q->where('judul', 'Peta Sekolah');
+            $q->whereIn('judul', ['Peta Sekolah', 'Agenda']);
         })
         ->with(['kategori', 'user', 'galeries.fotos'])
         ->latest()
@@ -25,7 +25,7 @@ class HomeController extends Controller
         $galeries = Galery::whereHas('fotos')
         ->whereHas('post', function($query) {
             $query->whereDoesntHave('kategori', function($q) {
-                $q->where('judul', 'Peta Sekolah');
+                $q->whereIn('judul', ['Peta Sekolah', 'Agenda']);
             });
         })
         ->with(['fotos', 'post.user', 'post.kategori'])
@@ -42,7 +42,16 @@ class HomeController extends Controller
         ->latest()
         ->first();
 
-        return view('beranda', compact('posts', 'galeries', 'petaSekolah'));
+        //agenda sekolah: ambil post yang berkategori "Agenda"
+        $agendas = Post::where('status', 'published')
+        ->whereHas('kategori', function($q) {
+            $q->where('judul', 'Agenda');
+        })
+        ->latest()
+        ->take(3)
+        ->get();
+
+        return view('beranda', compact('posts', 'galeries', 'petaSekolah', 'agendas'));
         
     }
 
@@ -51,7 +60,7 @@ class HomeController extends Controller
         $galeries = Galery::whereHas('fotos')
         ->whereHas('post', function($query) {
             $query->whereDoesntHave('kategori', function($q) {
-                $q->where('judul', 'Peta Sekolah');
+                $q->whereIn('judul', ['Peta Sekolah', 'Agenda']);
             });
         })
         ->with(['fotos', 'post.user', 'post.kategori'])
@@ -65,7 +74,8 @@ class HomeController extends Controller
     public function tentangKami()
     {
         $profile = Profile::first();
-        return view('tentangKami', compact('profile'));
+        $pengurus = Pengurus::all();
+        return view('tentangKami', compact('profile', 'pengurus'));
     }
 
     public function detailGaleri($id)
@@ -74,7 +84,7 @@ class HomeController extends Controller
         
         $latestPosts = Post::where('status', 'published')
             ->whereDoesntHave('kategori', function($q) {
-                $q->where('judul', 'Peta Sekolah');
+                $q->whereIn('judul', ['Peta Sekolah', 'Agenda']);
             })
             ->with(['kategori', 'user', 'galeries.fotos'])
             ->latest()
@@ -90,7 +100,7 @@ class HomeController extends Controller
         
         $latestPosts = Post::where('status', 'published')
             ->whereDoesntHave('kategori', function($q) {
-                $q->where('judul', 'Peta Sekolah');
+                $q->whereIn('judul', ['Peta Sekolah', 'Agenda']);
             })
             ->with(['kategori', 'user', 'galeries.fotos'])
             ->where('id', '!=', $post->id)

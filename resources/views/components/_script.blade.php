@@ -1,33 +1,40 @@
 <!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
 <script>
-    const navbar = document.getElementById('Navbar');
+    // Scroll effect → target inner pill container, bukan <nav> luar
+    const navPill = document.querySelector('#Navbar .max-w-\\[1280px\\]');
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 40) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.7)';
-            navbar.style.backdropFilter = 'blur(16px)';
-            navbar.style.webkitBackdropFilter = 'blur(16px)';
-            navbar.style.boxShadow = '0 1px 24px rgba(0,0,0,0.08)';
+            navPill.style.background = 'rgba(255, 255, 255, 0.75)';
+            navPill.style.backdropFilter = 'blur(16px)';
+            navPill.style.webkitBackdropFilter = 'blur(16px)';
+            navPill.style.boxShadow = '0 4px 24px rgba(0,0,0,0.10)';
+            navPill.style.borderColor = 'rgba(0,0,0,0.06)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 1)';
-            navbar.style.backdropFilter = 'none';
-            navbar.style.webkitBackdropFilter = 'none';
-            navbar.style.boxShadow = '0 1px 12px rgba(0,0,0,0.07)';
+            navPill.style.background = 'rgba(255, 255, 255, 1)';
+            navPill.style.backdropFilter = 'none';
+            navPill.style.webkitBackdropFilter = 'none';
+            navPill.style.boxShadow = '0 2px 16px rgba(0,0,0,0.06)';
+            navPill.style.borderColor = 'rgba(0,0,0,0.06)';
         }
     });
 
+    // Flickity carousel
     $('.main-carousel').flickity({
-    cellAlign: 'left',
-    contain: true,
-    prevNextButtons: false,
-    pageDots: false,
-    autoPlay: 4000,
-    wrapAround: true
-});
-var $carousel = $('.main-carousel').flickity();
-$('.button--previous').on('click', function() { $carousel.flickity('previous'); });
-$('.button--next').on('click', function() { $carousel.flickity('next'); });
+        cellAlign: 'left',
+        contain: true,
+        prevNextButtons: false,
+        pageDots: false,
+        autoPlay: 4000,
+        wrapAround: true
+    });
+
+    var $carousel = $('.main-carousel').flickity();
+    $('.button--previous').on('click', function() { $carousel.flickity('previous'); });
+    $('.button--next').on('click', function() { $carousel.flickity('next'); });
 </script>
 
 <script>
@@ -46,6 +53,17 @@ $('.button--next').on('click', function() { $carousel.flickity('next'); });
             lines[1].style.opacity = '0';
             lines[2].style.transform = 'translateY(-6px) rotate(-45deg)';
         } else {
+            lines[0].style.transform = '';
+            lines[1].style.opacity = '1';
+            lines[2].style.transform = '';
+        }
+    });
+
+    // Tutup mobile menu saat klik di luar navbar
+    document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
             lines[0].style.transform = '';
             lines[1].style.opacity = '1';
             lines[2].style.transform = '';

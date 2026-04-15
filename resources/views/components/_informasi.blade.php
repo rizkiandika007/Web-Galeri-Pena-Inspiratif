@@ -64,17 +64,17 @@
             </div>
         </div>
         
-        <!-- AGENDA SEKOLAH (DINAMIS DARI POSTS) -->
+        <!-- AGENDA (DINAMIS DARI POSTS) -->
         <div id="Agenda-Sekolah" class="flex flex-col w-full lg:w-1/3 gap-6">
             <div>
-                <span class="section-badge text-left inline-block mb-2">AGENDA SEKOLAH</span>
+                <span class="section-badge text-left inline-block mb-2">AGENDA</span>
                 <h2 class="section-title text-left text-xl lg:text-[22px] m-0">Jadwal Mendatang</h2>
             </div>
 
             <div class="flex flex-col gap-4">
 
-                {{-- $posts → koleksi yang sama, ->skip(2)->take(3) → ambil data ke-3 s/d ke-5 --}}
-                @forelse($posts->skip(2)->take(3) as $post)
+                {{-- $agendas → koleksi khusus post bertipe Agenda --}}
+                @forelse($agendas as $post)
 
                     {{-- route('post.detail', $post->id) → named route dengan parameter id dari tabel 'posts' --}}
                     <a href="{{ route('post.detail', $post->id) }}" class="card w-full group">
