@@ -1,5 +1,5 @@
 <!-- HERO BANNER GALERI (Updated layout) -->
-<section class="relative w-full pt-36 md:pt-32 pb-20 bg-[#2E5BFF]">
+<section class="relative w-full pt-36 md:pt-32 pb-20 bg-blue-600">
     <!-- Dark/Overlay Effect -->
     <div class="absolute inset-0 bg-black/10 z-0"></div>
     
@@ -8,7 +8,7 @@
         <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-sm">
             Galeri Kegiatan
         </h1>
-        <p class="text-white/90 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+        <p class="text-gray-100 text-lg md:text-xl font-medium max-w-2xl mx-auto">
             Dokumentasi Kegiatan Ekstrakurikuler Pena Inspiratif
         </p>
     </div>

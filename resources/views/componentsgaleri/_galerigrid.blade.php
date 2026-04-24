@@ -6,31 +6,43 @@
             @foreach($galeries as $galery)
                 @php
                     $firstFoto = $galery->fotos->first();
-                    $postJudul = $galery->post->judul ?? 'Galeri Sekolah';
+                    // Perbaikan: pastikan post tidak null
+                    $postJudul = $galery->post ? ($galery->post->judul ?? 'Galeri Sekolah') : 'Galeri Sekolah';
+                    $postId = $galery->post ? $galery->post->id : null;
                 @endphp
-                <a href="{{ route('post.detail', $galery->post->id) }}"
-                    class="group relative block w-full aspect-[4/3] sm:aspect-[16/10] min-h-[250px] overflow-hidden rounded-[20px] bg-slate-200 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] outline-none">
-                    
-                    @if($firstFoto)
+                
+                @if($postId && $firstFoto)
+                    <a href="{{ route('post.detail', $postId) }}"
+                        class="group relative block w-full aspect-[4/3] sm:aspect-[16/10] min-h-[250px] overflow-hidden rounded-[20px] bg-slate-200 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] outline-none">
+                        
                         <img src="{{ asset('storage/' . $firstFoto->file) }}"
                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             alt="{{ $postJudul }}" />
-                    @else
-                        <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
-                            <span class="text-gray-400 font-medium">Kosong</span>
+
+                        <!-- Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+
+                        <!-- Title Overlay -->
+                        <div class="absolute bottom-5 left-5 right-5 z-20">
+                            <h4 class="font-bold text-white text-lg leading-tight line-clamp-2" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                                {{ $postJudul }}
+                            </h4>
                         </div>
-                    @endif
-
-                    <!-- Gradient Overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
-
-                    <!-- Title Overlay -->
-                    <div class="absolute bottom-5 left-5 right-5 z-20">
-                        <h4 class="font-bold text-white text-lg leading-tight line-clamp-2" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-                            {{ $postJudul }}
-                        </h4>
+                    </a>
+                @elseif($firstFoto && !$postId)
+                    <!-- Jika galeri tidak punya post, tampilkan tanpa link -->
+                    <div class="group relative block w-full aspect-[4/3] sm:aspect-[16/10] min-h-[250px] overflow-hidden rounded-[20px] bg-slate-200">
+                        <img src="{{ asset('storage/' . $firstFoto->file) }}"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            alt="{{ $postJudul }}" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80"></div>
+                        <div class="absolute bottom-5 left-5 right-5 z-20">
+                            <h4 class="font-bold text-white text-lg leading-tight line-clamp-2">
+                                {{ $postJudul }}
+                            </h4>
+                        </div>
                     </div>
-                </a>
+                @endif
             @endforeach
         </div>
 
@@ -47,7 +59,7 @@
             @auth
                 <a href="{{ url('/admin') }}" class="mt-8 inline-flex items-center gap-2 font-bold text-white px-6 py-3 rounded-full bg-[#2E5BFF] hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30">
                     Ke Dashboard Administrator
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 20"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                 </a>
             @endauth
         </div>

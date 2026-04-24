@@ -15,6 +15,7 @@
         {{-- DESKTOP LINKS --}}
         <div class="hidden md:flex items-center" style="gap: 2px;">
             <a href="{{ route('home') }}" class="nav-link hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('/') ? 'bg-blue-50 !text-blue-600 font-bold' : '' }}" style="padding: 7px 14px; border-radius: 999px; font-size: 14px;">Beranda</a>
+            <a href="{{ route('agenda') }}" class="nav-link hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('agenda*') ? 'bg-blue-50 !text-blue-600 font-bold' : '' }}" style="padding: 7px 14px; border-radius: 999px; font-size: 14px;">Agenda</a>
             <a href="{{ route('galeri') }}" class="nav-link hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('galeri*') ? 'bg-blue-50 !text-blue-600 font-bold' : '' }}" style="padding: 7px 14px; border-radius: 999px; font-size: 14px;">Galeri</a>
             <a href="{{ route('tentangKami') }}" class="nav-link hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('tentang-kami*') ? 'bg-blue-50 !text-blue-600 font-bold' : '' }}" style="padding: 7px 14px; border-radius: 999px; font-size: 14px;">Tentang Kami</a>
         </div>
@@ -30,6 +31,7 @@
     {{-- MOBILE MENU --}}
     <div id="mobile-menu" class="md:hidden hidden flex-col bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.07)] max-w-[1280px] mx-auto mt-2" style="padding: 12px; border-radius: 20px;">
         <a href="{{ route('home') }}" class="flex items-center py-2.5 px-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('/') ? 'bg-blue-50 text-blue-600 font-bold' : '' }}" style="font-size: 14px; border-radius: 12px;">Beranda</a>
+        <a href="{{ route('agenda') }}" class="flex items-center py-2.5 px-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('agenda*') ? 'bg-blue-50 text-blue-600 font-bold' : '' }}" style="font-size: 14px; border-radius: 12px;">Agenda</a>
         <a href="{{ route('galeri') }}" class="flex items-center py-2.5 px-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('galeri*') ? 'bg-blue-50 text-blue-600 font-bold' : '' }}" style="font-size: 14px; border-radius: 12px;">Galeri</a>
         <a href="{{ route('tentangKami') }}" class="flex items-center py-2.5 px-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('tentang-kami*') ? 'bg-blue-50 text-blue-600 font-bold' : '' }}" style="font-size: 14px; border-radius: 12px;">Tentang Kami</a>
     </div>

@@ -5,6 +5,7 @@ use App\Models\Post;
 use App\Models\Galery;
 use App\Models\Profile;
 use App\Models\Pengurus;
+use App\Models\Agenda;
 
 use Illuminate\Http\Request;
 
@@ -42,12 +43,8 @@ class HomeController extends Controller
         ->latest()
         ->first();
 
-        //agenda sekolah: ambil post yang berkategori "Agenda"
-        $agendas = Post::where('status', 'published')
-        ->whereHas('kategori', function($q) {
-            $q->where('judul', 'Agenda');
-        })
-        ->latest()
+        //agenda sekolah: ambil dari Agenda resource
+        $agendas = Agenda::latest()
         ->take(3)
         ->get();
 
@@ -58,17 +55,24 @@ class HomeController extends Controller
     public function galeri()
     {
         $galeries = Galery::whereHas('fotos')
-        ->whereHas('post', function($query) {
-            $query->whereDoesntHave('kategori', function($q) {
-                $q->whereIn('judul', ['Peta Sekolah', 'Agenda']);
-            });
-        })
-        ->with(['fotos', 'post.user', 'post.kategori'])
-        ->where('status',true)
-        ->latest()
-        ->get();
+            ->whereHas('post', function($query) {
+                $query->where('status', 'published')
+                    ->whereDoesntHave('kategori', function($q) {
+                        $q->whereIn('judul', ['Peta Sekolah', 'Agenda']);
+                    });
+            })
+            ->with(['fotos', 'post.user', 'post.kategori'])
+            ->where('status', true)
+            ->latest()
+            ->get();
 
         return view('galeri', compact('galeries'));
+    }
+
+    public function agenda()
+    {
+        $agendas = Agenda::latest()->get();
+        return view('agenda', compact('agendas'));
     }
 
     public function tentangKami()
@@ -109,6 +113,18 @@ class HomeController extends Controller
             ->get();
             
         return view('detailPost', compact('post', 'latestPosts'));
+    }
+
+    public function detailAgenda($id)
+    {
+        $agenda = Agenda::findOrFail($id);
+        
+        $latestAgendas = Agenda::where('id', '!=', $agenda->id)
+            ->latest()
+            ->take(3)
+            ->get();
+            
+        return view('detailAgenda', compact('agenda', 'latestAgendas'));
     }
     
 }

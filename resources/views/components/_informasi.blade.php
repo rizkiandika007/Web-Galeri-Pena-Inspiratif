@@ -73,28 +73,28 @@
 
             <div class="flex flex-col gap-4">
 
-                {{-- $agendas → koleksi khusus post bertipe Agenda --}}
-                @forelse($agendas as $post)
+                {{-- $agendas → koleksi dari Agenda resource --}}
+                @forelse($agendas as $agenda)
 
-                    {{-- route('post.detail', $post->id) → named route dengan parameter id dari tabel 'posts' --}}
-                    <a href="{{ route('post.detail', $post->id) }}" class="card w-full group">
+                    {{-- route('agenda.detail', $agenda->id) --}}
+                    <a href="{{ route('agenda.detail', $agenda->id) }}" class="card w-full group">
                         <div class="agenda-card-inner transition-transform duration-300 md:hover:translate-x-1 outline-none">
                             <div class="agenda-date shrink-0 w-[64px] h-[64px] bg-blue-50/50 group-hover:bg-blue-100 transition-colors">
-                                {{-- $post->created_at → kolom timestamp dari tabel 'posts' --}}
-                                <span class="font-bold text-xl leading-none text-[#2563EB]">{{ $post->created_at->format('d') }}</span>
-                                <span class="font-bold text-[11px] text-[#2563EB]/70 leading-none">{{ strtoupper($post->created_at->translatedFormat('M')) }}</span>
+                                @php
+                                    $tgl = \Carbon\Carbon::parse($agenda->tanggal_pelaksanaan);
+                                @endphp
+                                <span class="font-bold text-xl leading-none text-[#2563EB]">{{ $tgl->format('d') }}</span>
+                                <span class="font-bold text-[11px] text-[#2563EB]/70 leading-none">{{ strtoupper($tgl->translatedFormat('M')) }}</span>
                             </div>
                             <div class="flex flex-col gap-1.5 min-w-0 pr-2">
-                                {{-- $post->judul → kolom 'judul' di tabel 'posts' --}}
-                                <h3 class="font-semibold text-[14px] leading-tight text-[#1A1D26] line-clamp-2 md:group-hover:text-blue-600 transition-colors">{{ $post->judul }}</h3>
+                                <h3 class="font-semibold text-[14px] leading-tight text-[#1A1D26] line-clamp-2 md:group-hover:text-blue-600 transition-colors">{{ $agenda->judul }}</h3>
 
-                                {{-- $post->kategori->judul → relasi belongsTo ke tabel 'kategoris' --}}
-                                <p class="text-[#A3A6AE] text-xs font-medium">{{ $post->kategori->judul ?? 'Umum' }}</p>
+                                <p class="text-[#A3A6AE] text-xs font-medium">Agenda Sekolah</p>
                             </div>
                         </div>
                     </a>
 
-                {{-- @empty → ditampilkan jika tidak ada data setelah skip(2) --}}
+                {{-- @empty → ditampilkan jika tidak ada data --}}
                 @empty
                     <div class="flex items-center justify-center text-[#A3A6AE] font-medium py-10 bg-[#F1F5F9] rounded-2xl text-sm">
                         Belum ada agenda

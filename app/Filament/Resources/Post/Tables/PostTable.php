@@ -51,7 +51,7 @@ class PostTable
                 //
             ])
             ->recordActions([
-                viewAction::make(),
+                ViewAction::make(),
                 DeleteAction::make(),
                 EditAction::make(),
             ])

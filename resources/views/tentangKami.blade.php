@@ -7,5 +7,6 @@
 @include('componentstentang._pengurus')
 @include('components._footer')
 @include('components._script')
+@include('componentstentang._script')
 </body>
 </html>
