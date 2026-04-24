@@ -5,7 +5,7 @@
         <a href="{{ route('home') }}" class="flex items-center hover:opacity-90 transition-opacity group" style="gap: 10px;">
             <img src="{{ asset('assets/images/logos/pena.jpeg') }}" alt="icon"
                 class="group-hover:scale-105 transition-transform duration-300"
-                style="width: 38px; height: 38px; object-fit: cover; border-radius: 10px;" />
+                style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px;" />
             <div class="flex flex-col" style="line-height: 1.2;">
                 <span class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300" style="font-size: 14px; letter-spacing: -0.2px;">Pena Inspiratif</span>
                 <span class="font-medium text-gray-400 group-hover:text-blue-400 transition-colors duration-300" style="font-size: 10px; letter-spacing: 0.2px;">Suara Masa Depan</span>
@@ -17,14 +17,6 @@
             <a href="{{ route('home') }}" class="nav-link hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('/') ? 'bg-blue-50 !text-blue-600 font-bold' : '' }}" style="padding: 7px 14px; border-radius: 999px; font-size: 14px;">Beranda</a>
             <a href="{{ route('galeri') }}" class="nav-link hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('galeri*') ? 'bg-blue-50 !text-blue-600 font-bold' : '' }}" style="padding: 7px 14px; border-radius: 999px; font-size: 14px;">Galeri</a>
             <a href="{{ route('tentangKami') }}" class="nav-link hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('tentang-kami*') ? 'bg-blue-50 !text-blue-600 font-bold' : '' }}" style="padding: 7px 14px; border-radius: 999px; font-size: 14px;">Tentang Kami</a>
-
-            <div style="width: 1px; height: 18px; background: #E8EBF4; margin: 0 10px;"></div>
-
-            @auth
-                <a href="{{ url('/admin') }}" class="nav-cta hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">Dashboard</a>
-            @else
-                <a href="{{ url('/admin') }}" class="nav-cta hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">Login</a>
-            @endauth
         </div>
 
         {{-- HAMBURGER BUTTON (Mobile) --}}
@@ -40,13 +32,5 @@
         <a href="{{ route('home') }}" class="flex items-center py-2.5 px-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('/') ? 'bg-blue-50 text-blue-600 font-bold' : '' }}" style="font-size: 14px; border-radius: 12px;">Beranda</a>
         <a href="{{ route('galeri') }}" class="flex items-center py-2.5 px-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('galeri*') ? 'bg-blue-50 text-blue-600 font-bold' : '' }}" style="font-size: 14px; border-radius: 12px;">Galeri</a>
         <a href="{{ route('tentangKami') }}" class="flex items-center py-2.5 px-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 {{ request()->is('tentang-kami*') ? 'bg-blue-50 text-blue-600 font-bold' : '' }}" style="font-size: 14px; border-radius: 12px;">Tentang Kami</a>
-
-        <div style="height: 1px; background: #E8EBF4; margin: 8px 0;"></div>
-
-        @auth
-            <a href="{{ url('/admin') }}" class="nav-cta text-center hover:bg-blue-700 transition-all duration-200" style="display: block; border-radius: 12px;">Dashboard</a>
-        @else
-            <a href="{{ url('/admin') }}" class="nav-cta text-center hover:bg-blue-700 transition-all duration-200" style="display: block; border-radius: 12px;">Login</a>
-        @endauth
     </div>
 </nav>

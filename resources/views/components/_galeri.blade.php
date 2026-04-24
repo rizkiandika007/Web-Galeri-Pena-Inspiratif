@@ -15,7 +15,7 @@
                 <div class="group relative w-full flex shrink-0 overflow-hidden h-[440px] rounded-2xl">
 
                     @if($firstFoto)
-                        <img src="{{ asset('storage/' . $firstFoto->file) }}" class="absolute w-full h-full object-cover z-[1] transition-transform duration-[10000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06]" alt="{{ $postJudul }}" />
+                        <img src="{{ asset('storage/' . $firstFoto->file) }}" class="absolute w-full h-full object-cover z-[1] transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-75" alt="{{ $postJudul }}" />
                     @else
                         <div class="absolute w-full h-full z-[1] bg-gradient-to-br from-[#042C53] via-[#185FA5] to-[#B5D4F4] flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
@@ -53,7 +53,7 @@
         @empty
             <div class="swiper-slide w-full shrink-0">
                 <div class="group relative w-full flex shrink-0 overflow-hidden h-[440px] rounded-2xl">
-                    <img src="{{ asset('assets/images/thumbnails/cover.png') }}" class="absolute w-full h-full object-cover z-[1] transition-transform duration-[10000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06]" alt="galeri" />
+                    <img src="{{ asset('assets/images/thumbnails/cover.png') }}" class="absolute w-full h-full object-cover z-[1] transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-75" alt="galeri" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/5 z-10 pointer-events-none"></div>
                     <div class="w-full flex items-end justify-between relative p-12 z-20">
                         <div class="max-w-[720px] text-left">

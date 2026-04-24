@@ -1,5 +1,5 @@
 import './bootstrap';
-import Swiper from 'swiper';
+import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 // Inisialisasi Swiper setelah DOM siap
