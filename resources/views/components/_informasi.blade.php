@@ -66,9 +66,12 @@
         
         <!-- AGENDA (DINAMIS DARI POSTS) -->
         <div id="Agenda-Sekolah" class="flex flex-col w-full lg:w-1/3 gap-6">
-            <div>
-                <span class="section-badge text-left inline-block mb-2">AGENDA</span>
-                <h2 class="section-title text-left text-xl lg:text-[22px] m-0">Jadwal Mendatang</h2>
+            <div class="flex flex-row justify-between items-end">
+                <div>
+                    <span class="section-badge text-left inline-block mb-2">AGENDA</span>
+                    <h2 class="section-title text-left text-xl lg:text-[22px] m-0">Jadwal Mendatang</h2>
+                </div>
+                <a href="{{ route('agenda') }}" class="font-semibold text-[#2563EB] text-sm hover:underline whitespace-nowrap mb-1">Lihat Semua →</a>
             </div>
 
             <div class="flex flex-col gap-4">

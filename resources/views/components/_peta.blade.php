@@ -39,18 +39,18 @@
         </div>
     </div>
 
-    <div class="mt-8 md:mt-12 bg-white overflow-hidden flex flex-col border border-gray-100 rounded-3xl lg:rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.06)] p-3 lg:p-4">
-        <div class="px-2 lg:px-4 pt-2 pb-4 flex flex-col gap-1">
-            <h3 class="font-extrabold text-xl text-gray-900 leading-tight">Lokasi Google Maps</h3>
-        </div>
-        <div class="w-full h-[300px] sm:h-[400px] lg:h-[480px] relative rounded-[20px] lg:rounded-[24px] overflow-hidden">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.081370484469!2d106.63161827353947!3d-6.636816764876124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69d7529a258b63%3A0x25d4e941025584e4!2sSMK%20Al%20Hafidz%20Leuwiliang!5e0!3m2!1sid!2sid!4v1776998231791!5m2!1sid!2sid" 
-                class="absolute top-0 left-0 w-full h-full border-0" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
+<div class="mt-8 md:mt-12 bg-white overflow-hidden flex flex-col border border-gray-100 rounded-3xl lg:rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.06)] p-3 lg:p-4">
+    <div class="px-2 lg:px-4 pt-2 pb-4 flex flex-col gap-1">
+        <h3 class="font-extrabold text-xl text-gray-900 leading-tight">Lokasi Google Maps</h3>
     </div>
+    <div class="w-full relative rounded-[20px] lg:rounded-[24px] overflow-hidden" style="padding-bottom: 56.25%;">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.081370484469!2d106.63161827353947!3d-6.636816764876124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69d7529a258b63%3A0x25d4e941025584e4!2sSMK%20Al%20Hafidz%20Leuwiliang!5e0!3m2!1sid!2sid!4v1776998231791!5m2!1sid!2sid" 
+            class="absolute top-0 left-0 w-full h-full border-0 rounded-[20px] lg:rounded-[24px]" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
 </section>

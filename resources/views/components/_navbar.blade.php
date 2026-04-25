@@ -5,7 +5,7 @@
         <a href="{{ route('home') }}" class="flex items-center hover:opacity-90 transition-opacity group" style="gap: 10px;">
             <img src="{{ asset('assets/images/logos/pena.jpeg') }}" alt="icon"
                 class="group-hover:scale-105 transition-transform duration-300"
-                style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px;" />
+                style="width: 60px; height: 45px; object-fit: cover; border-radius: 10px;" />
             <div class="flex flex-col" style="line-height: 1.2;">
                 <span class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300" style="font-size: 14px; letter-spacing: -0.2px;">Pena Inspiratif</span>
                 <span class="font-medium text-gray-400 group-hover:text-blue-400 transition-colors duration-300" style="font-size: 10px; letter-spacing: 0.2px;">Suara Masa Depan</span>
