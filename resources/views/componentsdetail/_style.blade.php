@@ -15,16 +15,31 @@
             height: 420px;
             border-radius: 20px;
             overflow: hidden;
+            background: #000;
         }
 
-        .hero-detail img {
+        .hero-detail .blur-bg {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: blur(20px) brightness(0.5);
+            transform: scale(1.1);
+            z-index: 0;
+        }
+
+        .hero-detail .main-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 1;
             transition: transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .hero-detail:hover img {
+        .hero-detail:hover .main-img {
             transform: scale(1.04);
         }
 
@@ -32,7 +47,7 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.05) 100%);
-            z-index: 1;
+            z-index: 2;
         }
 
         .hero-content {
@@ -40,7 +55,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            z-index: 2;
+            z-index: 3;
             padding: 48px;
         }
 

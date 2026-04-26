@@ -25,9 +25,10 @@
 
 
             @if($heroImage)
-                <img src="{{ asset('storage/' . $heroImage) }}" alt="{{ $post->judul }}" />
+                <img src="{{ asset('storage/' . $heroImage) }}" class="blur-bg" alt="blur background" />
+                <img src="{{ asset('storage/' . $heroImage) }}" class="main-img" alt="{{ $post->judul }}" />
             @else
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #042C53 0%, #185FA5 50%, #B5D4F4 100%); display: flex; align-items: center; justify-content: center;">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #042C53 0%, #185FA5 50%, #B5D4F4 100%); display: flex; align-items: center; justify-content: center; position: relative; z-index: 0;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
                 </div>
             @endif

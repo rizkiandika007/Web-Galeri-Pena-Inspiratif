@@ -43,8 +43,9 @@ class HomeController extends Controller
             ->latest()
             ->first();
 
-        //agenda sekolah: ambil dari Agenda resource
-        $agendas = Agenda::latest()
+        //agenda sekolah: ambil dari Agenda resource yang belum terlewat
+        $agendas = Agenda::where('tanggal_pelaksanaan', '>=', now()->toDateString())
+            ->orderBy('tanggal_pelaksanaan', 'asc')
             ->take(3)
             ->get();
 
@@ -71,7 +72,9 @@ class HomeController extends Controller
 
     public function agenda()
     {
-        $agendas = Agenda::latest()->get();
+        $agendas = Agenda::where('tanggal_pelaksanaan', '>=', now()->toDateString())
+            ->orderBy('tanggal_pelaksanaan', 'asc')
+            ->get();
         return view('agenda', compact('agendas'));
     }
 
@@ -125,7 +128,8 @@ class HomeController extends Controller
         $agenda = Agenda::findOrFail($id);
 
         $latestAgendas = Agenda::where('id', '!=', $agenda->id)
-            ->latest()
+            ->where('tanggal_pelaksanaan', '>=', now()->toDateString())
+            ->orderBy('tanggal_pelaksanaan', 'asc')
             ->take(3)
             ->get();
 
