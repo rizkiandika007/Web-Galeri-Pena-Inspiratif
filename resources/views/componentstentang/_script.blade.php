@@ -1,5 +1,4 @@
 <script>
-    let pengurusData = @json($pengurus);
     let currentIndex = 0;
     
     function openModal(fotoUrl, nama, jabatan) {

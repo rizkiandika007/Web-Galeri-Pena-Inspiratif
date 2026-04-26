@@ -20,17 +20,19 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-start">
                 
                 <!-- Left Column: Image -->
-                <div class="lg:col-span-5 w-full bg-gray-50/50 rounded-3xl p-6 md:p-8 flex items-center justify-center border border-gray-100 h-full relative overflow-hidden">
-                    <!-- Subtle corner decoration like the pink curve in the example (adapted to light blue) -->
-                    <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-blue-100/50 rounded-full blur-xl"></div>
-                    
-                    @if($profile && $profile->foto)
-                        <img src="{{ asset('storage/' . $profile->foto) }}" alt="Tentang Kami" class="w-full max-w-sm h-auto object-contain relative z-10 drop-shadow-xl hover:scale-105 transition-transform duration-500">
-                    @else
-                        <div class="w-full aspect-square flex items-center justify-center relative z-10">
-                            <span class="text-gray-400 font-medium tracking-wide">Belum ada foto</span>
-                        </div>
-                    @endif
+                <div class="lg:col-span-5 h-max z-10">
+                    <div class="w-full bg-gray-50/50 rounded-3xl p-6 md:p-8 flex items-center justify-center border border-gray-100 relative overflow-hidden">
+                        <!-- Subtle corner decoration like the pink curve in the example (adapted to light blue) -->
+                        <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-blue-100/50 rounded-full blur-xl"></div>
+                        
+                        @if($profile && $profile->foto)
+                            <img src="{{ asset('storage/' . $profile->foto) }}" alt="Tentang Kami" class="w-full max-w-sm h-auto object-contain relative z-10 drop-shadow-xl hover:scale-105 transition-transform duration-500">
+                        @else
+                            <div class="w-full aspect-square flex items-center justify-center relative z-10">
+                                <span class="text-gray-400 font-medium tracking-wide">Belum ada foto</span>
+                            </div>
+                        @endif
+                    </div>
                 </div>
 
                 <!-- Right Column: Content -->

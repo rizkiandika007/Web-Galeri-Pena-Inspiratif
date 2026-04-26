@@ -6,7 +6,7 @@
             <div class="flex flex-row justify-between items-end">
                 <div>
                     <span class="section-badge text-left inline-block mb-2">INFORMASI TERKINI</span>
-                    <h2 class="section-title text-left text-xl lg:text-[22px] m-0">Berita & Prestasi Terbaru</h2>
+                    <h2 class="section-title text-left text-xl lg:text-[22px] m-0">Berita Terbaru</h2>
                 </div>
                 {{-- route('galeri') → link lihat semua --}}
                 <a href="{{ route('galeri') }}" class="font-semibold text-[#2563EB] text-sm hover:underline whitespace-nowrap mb-1">Lihat Semua →</a>

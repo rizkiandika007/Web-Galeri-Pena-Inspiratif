@@ -2,14 +2,14 @@
 <section id="Peta-Sekolah" class="max-w-[1200px] mx-auto px-4 lg:px-8 mt-16 md:mt-24 mb-10 md:mb-20">
     <div class="text-center mb-10 md:mb-12">
         <span class="section-badge mb-3 inline-block">PETA SEKOLAH</span>
-        <h2 class="section-title text-[24px] md:text-[32px] leading-tight">Denah & Lokasi Ruangan<br>Pena Inspiratif</h2>
+        <h2 class="section-title text-[24px] md:text-[32px] leading-tight">Lokasi<br>SMK AL Hafidz</h2>
     </div>
 
     <div class="bg-white overflow-hidden flex flex-col lg:flex-row border border-gray-100 rounded-3xl lg:rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.06)]">
         <div class="flex flex-col justify-center w-full lg:w-5/12 p-8 lg:p-14 gap-4 md:gap-5">
-            <h3 class="font-extrabold text-2xl text-gray-900 leading-tight">Fasilitas Lengkap</h3>
-            <p class="text-gray-500 text-[15px] leading-relaxed">
-                Jelajahi denah sekolah kami untuk menemukan ruang kelas, laboratorium komputer, perpustakaan, hingga fasilitas olahraga dengan mudah dan interaktif.
+            <h3 class="font-extrabold text-2xl text-gray-900 leading-tight">Temukan Lokasi Kami</h3>
+            <p class="text-gray-500 text-[15px] leading-relaxed">   
+                
             </p>
 
             {{-- $petaSekolah → variabel dari controller, berisi satu record galeri khusus peta --}}

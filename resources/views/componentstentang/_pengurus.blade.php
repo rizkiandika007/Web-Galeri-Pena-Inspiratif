@@ -1,5 +1,5 @@
-<section id="Pengurus" class="relative w-full py-20 bg-blue-700">
-    <div class="max-w-[1200px] mx-auto px-4 lg:px-8 relative z-10">
+<section id="Pengurus" class="relative w-full py-12 px-4 lg:px-8">
+    <div class="max-w-[1200px] mx-auto bg-gradient-to-br from-blue-600 to-blue-800 rounded-[3rem] py-14 md:py-20 px-6 lg:px-12 shadow-[0_20px_50px_-12px_rgba(30,58,138,0.3)] relative z-10 border border-blue-500/20">
         
         <!-- Header Section -->
         <div class="text-center mb-16">
@@ -12,17 +12,17 @@
         </div>
 
         <!-- Grid Kepengurusan -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
             @forelse($pengurus as $item)
                 <div class="flex flex-col items-center group">
-                    <!-- Photo - Clickable -->
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-white p-1 shadow-lg mb-5 overflow-hidden transition-transform duration-300 group-hover:scale-105 cursor-pointer"
+                    <!-- Photo - Clickable (Ukuran diperkecil) -->
+                    <div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-white p-1 shadow-lg mb-4 overflow-hidden transition-transform duration-300 group-hover:scale-105 cursor-pointer"
                          onclick="openModal('{{ asset('storage/' . $item->foto) }}', '{{ $item->nama }}', '{{ $item->jabatan }}')">
                         @if($item->foto)
                             <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}" class="w-full h-full object-cover rounded-full">
                         @else
                             <div class="w-full h-full flex items-center justify-center bg-gray-100 rounded-full">
-                                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                 </svg>
                             </div>
@@ -30,10 +30,10 @@
                     </div>
                     
                     <!-- Text Info -->
-                    <h3 class="text-lg font-bold text-white text-center leading-tight mb-1">
+                    <h3 class="text-base font-bold text-white text-center leading-tight mb-1">
                         {{ $item->nama }}
                     </h3>
-                    <p class="text-sm text-white/70 text-center font-medium">
+                    <p class="text-xs text-white/70 text-center font-medium">
                         {{ $item->jabatan }}
                     </p>
                 </div>
@@ -47,39 +47,41 @@
     </div>
 </section>
 
-<!-- MODAL LIGHTBOX - Tailwind Only -->
-<div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-sm" onclick="closeModal()">
-    <div class="relative max-w-4xl mx-4" onclick="event.stopPropagation()">
+<!-- MODAL LIGHTBOX -->
+<section id="imageModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-md opacity-0 transition-opacity duration-300" onclick="closeModal()">
+    <div class="relative w-full max-w-2xl mx-4 flex flex-col items-center bg-white/10 backdrop-blur-xl border border-white/20 p-6 md:p-8 rounded-[2rem] shadow-2xl scale-95 transition-transform duration-300" onclick="event.stopPropagation()" id="modalContent">
+        
         <!-- Tombol Close -->
-        <button onclick="closeModal()" class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button onclick="closeModal()" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white bg-black/20 hover:bg-black/50 transition-all rounded-full p-2 z-10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
         
         <!-- Gambar Preview -->
-        <img id="modalImage" src="" alt="Preview" class="max-w-full max-h-[80vh] rounded-2xl shadow-2xl mx-auto object-contain transition-all duration-200">
+        <div class="w-full flex justify-center items-center overflow-hidden rounded-2xl bg-black/40 mb-6 h-[40vh] md:h-[50vh] relative">
+            <img id="modalImage" src="" alt="Preview Foto Pengurus" class="w-full h-full object-contain">
+        </div>
         
         <!-- Informasi Foto -->
-        <div class="mt-4 text-center text-white">
-            <h3 id="modalName" class="text-xl font-bold"></h3>
-            <p id="modalJabatan" class="text-white/70"></p>
+        <div class="text-center w-full px-4">
+            <h3 id="modalName" class="text-2xl md:text-3xl font-extrabold text-white mb-2 tracking-tight"></h3>
+            <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30">
+                <p id="modalJabatan" class="text-blue-200 font-semibold text-sm md:text-base"></p>
+            </div>
         </div>
         
         <!-- Tombol Navigasi -->
-        <div class="absolute inset-y-0 left-0 flex items-center">
-            <button onclick="prevImage(event)" class="bg-white/20 hover:bg-white/30 rounded-full p-2 ml-4 transition-colors hidden" id="prevBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-        </div>
-        <div class="absolute inset-y-0 right-0 flex items-center">
-            <button onclick="nextImage(event)" class="bg-white/20 hover:bg-white/30 rounded-full p-2 mr-4 transition-colors hidden" id="nextBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-        </div>
+        <button onclick="prevImage(event)" class="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-6 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full p-3 transition-all hidden shadow-lg" id="prevBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        
+        <button onclick="nextImage(event)" class="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-6 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full p-3 transition-all hidden shadow-lg" id="nextBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
     </div>
-</div>
+</section>
