@@ -78,8 +78,13 @@ class HomeController extends Controller
     public function tentangKami()
     {
         $profile = Profile::first();
+        return view('tentangKami', compact('profile'));
+    }
+
+    public function pengurus()
+    {
         $pengurus = Pengurus::all();
-        return view('tentangKami', compact('profile', 'pengurus'));
+        return view('pengurus', compact('pengurus'));
     }
 
     public function detailGaleri($id)

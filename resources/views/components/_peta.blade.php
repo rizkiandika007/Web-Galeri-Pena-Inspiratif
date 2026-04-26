@@ -7,9 +7,9 @@
 
     <div class="bg-white overflow-hidden flex flex-col lg:flex-row border border-gray-100 rounded-3xl lg:rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.06)]">
         <div class="flex flex-col justify-center w-full lg:w-5/12 p-8 lg:p-14 gap-4 md:gap-5">
-            <h3 class="font-extrabold text-2xl text-gray-900 leading-tight">Temukan Lokasi Kami</h3>
+            <h3 class="font-extrabold text-2xl text-gray-900 leading-tight">Selengkapnya</h3>
             <p class="text-gray-500 text-[15px] leading-relaxed">   
-                
+                Jelajahi lokasi SMK AL Hafidz melalui peta interaktif kami. Temukan rute terbaik untuk menuju sekolah, lihat fasilitas sekitar, dan dapatkan gambaran visual tentang lingkungan sekolah. Peta ini dirancang untuk membantu siswa, orang tua, dan pengunjung merencanakan perjalanan mereka dengan mudah dan nyaman.
             </p>
 
             {{-- $petaSekolah → variabel dari controller, berisi satu record galeri khusus peta --}}

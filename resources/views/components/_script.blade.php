@@ -56,4 +56,18 @@
             lines[2].style.transform = '';
         }
     });
+
+    // Mobile Dropdown Toggle
+    const mobileDropdownBtn = document.getElementById('mobile-dropdown-btn');
+    const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
+    const mobileDropdownIcon = document.getElementById('mobile-dropdown-icon');
+
+    if (mobileDropdownBtn) {
+        mobileDropdownBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileDropdownMenu.classList.toggle('hidden');
+            mobileDropdownMenu.classList.toggle('flex');
+            mobileDropdownIcon.classList.toggle('rotate-180');
+        });
+    }
 </script>

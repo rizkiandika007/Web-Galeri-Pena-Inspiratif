@@ -3,11 +3,12 @@
     
     function openModal(fotoUrl, nama, jabatan) {
         const modal = document.getElementById('imageModal');
+        const modalContent = document.getElementById('modalContent');
         const modalImage = document.getElementById('modalImage');
         const modalName = document.getElementById('modalName');
         const modalJabatan = document.getElementById('modalJabatan');
         
-        if (pengurusData && pengurusData.length) {
+        if (typeof pengurusData !== 'undefined' && pengurusData.length) {
             currentIndex = pengurusData.findIndex(p => p.foto && '{{ asset("storage") }}' + '/' + p.foto === fotoUrl);
             if (currentIndex === -1) currentIndex = 0;
             
@@ -28,14 +29,32 @@
         
         modal.classList.remove('hidden');
         modal.classList.add('flex');
+        
+        // Trigger reflow for animation
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modal.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }, 10);
+        
         document.body.style.overflow = 'hidden';
     }
     
     function closeModal() {
         const modal = document.getElementById('imageModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = 'auto';
+        const modalContent = document.getElementById('modalContent');
+        
+        modal.classList.remove('opacity-100');
+        modal.classList.add('opacity-0');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }, 300);
     }
     
     function prevImage(event) {
