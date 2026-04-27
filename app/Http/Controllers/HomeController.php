@@ -49,7 +49,9 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('beranda', compact('posts', 'galeries', 'petaSekolah', 'agendas'));
+        $profile = Profile::first();
+
+        return view('beranda', compact('posts', 'galeries', 'petaSekolah', 'agendas', 'profile'));
 
     }
 
@@ -67,7 +69,9 @@ class HomeController extends Controller
             ->latest()
             ->get();
 
-        return view('galeri', compact('galeries'));
+        $profile = Profile::first();
+
+        return view('galeri', compact('galeries', 'profile'));
     }
 
     public function agenda()
@@ -75,7 +79,8 @@ class HomeController extends Controller
         $agendas = Agenda::where('tanggal_pelaksanaan', '>=', now()->toDateString())
             ->orderBy('tanggal_pelaksanaan', 'asc')
             ->get();
-        return view('agenda', compact('agendas'));
+        $profile = Profile::first();
+        return view('agenda', compact('agendas', 'profile'));
     }
 
     public function tentangKami()
@@ -87,12 +92,13 @@ class HomeController extends Controller
     public function pengurus()
     {
         $pengurus = Pengurus::all();
-        return view('pengurus', compact('pengurus'));
+        $profile = Profile::first();
+        return view('pengurus', compact('pengurus', 'profile'));
     }
 
     public function detailGaleri($id)
     {
-        $galeri = Galery::with(['post.user', 'post.kategori', 'fotos'])->findOrFail($id);
+        $galeri = Galery::with(['post.user', 'post.kategori', 'post.tag', 'fotos'])->findOrFail($id);
 
         $latestPosts = Post::where('status', 'published')
             ->whereDoesntHave('kategori', function ($q) {
@@ -103,12 +109,14 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('detail', compact('galeri', 'latestPosts'));
+        $profile = Profile::first();
+
+        return view('detail', compact('galeri', 'latestPosts', 'profile'));
     }
 
     public function detailPost($id)
     {
-        $post = Post::with(['user', 'kategori', 'galeries.fotos'])->findOrFail($id);
+        $post = Post::with(['user', 'kategori','tags', 'galeries.fotos'])->findOrFail($id);
 
         $latestPosts = Post::where('status', 'published')
             ->whereDoesntHave('kategori', function ($q) {
@@ -120,7 +128,9 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('detailPost', compact('post', 'latestPosts'));
+        $profile = Profile::first();
+
+        return view('detailPost', compact('post', 'latestPosts', 'profile'));
     }
 
     public function detailAgenda($id)
@@ -133,7 +143,9 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('detailAgenda', compact('agenda', 'latestAgendas'));
+        $profile = Profile::first();
+
+        return view('detailAgenda', compact('agenda', 'latestAgendas', 'profile'));
     }
 
 }

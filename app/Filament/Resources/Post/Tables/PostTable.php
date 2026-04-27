@@ -25,8 +25,12 @@ class PostTable
                     ->circular(),
                 TextColumn::make('judul')
                     ->searchable(),
-                TextColumn::make('kategori.judul')
+                    TextColumn::make('kategori.judul')
                     ->label('Kategori')
+                    ->sortable()
+                    ->searchable(),
+                    TextColumn::make('tags.judul')
+                    ->label('tags')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('user.name')

@@ -17,14 +17,25 @@ class PostForm
             ->schema([
                 TextInput::make('judul')
                     ->required(),
-                Select::make('kategori_id')
+                    Select::make('kategori_id')
                     ->relationship('kategori', 'judul')
                     ->required()
                     ->searchable()
                     ->preload(),
-                RichEditor::make('isi')
+                    RichEditor::make('isi')
                     ->required()
                     ->columnSpanFull(),
+                    Select::make('tag_id')
+                    ->relationship('tags', 'judul')
+                    ->multiple()
+                    ->required()
+                    ->searchable()
+                    ->preload()
+                    ->createOptionForm([
+                        TextInput::make('judul')
+                        ->required()
+                        ->maxLength(255),
+                    ]),
                 Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required()

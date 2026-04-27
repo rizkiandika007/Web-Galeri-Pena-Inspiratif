@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table ->foreignId('kategori_id')->constrained('kategoris')->cascadeOnDelete();
             $table->text('isi');
+            $table ->foreignId('tag_id')->constrained('tags')->cascadeOnDelete();
             $table ->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('status')->default('draft');
             $table->timestamps();

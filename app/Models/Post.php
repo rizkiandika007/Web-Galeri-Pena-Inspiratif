@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['judul', 'kategori_id', 'isi', 'user_id', 'status'];
+    protected $fillable = ['judul', 'kategori_id', 'isi','tag_id','user_id', 'status'];
 
     public function kategori()
     {
@@ -20,5 +20,9 @@ class Post extends Model
     public function galeries()
     {
         return $this->hasMany(Galery::class);
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
