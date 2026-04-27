@@ -33,15 +33,15 @@ class ProfileForm
                     ->required(),
                 TextInput::make('latitude')
                     ->required()
-                    ->readOnly(),  // ✅ Di-set otomatis oleh Map
+                    ->readOnly(),  
                 TextInput::make('longitude')
                     ->required()
-                    ->readOnly(),  // ✅ Di-set otomatis oleh Map
+                    ->readOnly(),  
                 Map::make('location')
                     ->label('Lokasi')
                     ->defaultLocation(latitude: 40.4168, longitude: -3.7038)
                     ->showMarker()
-                    ->draggable()           // ✅ Ganti clickable() → draggable()
+                    ->draggable()           
                     ->tilesUrl("https://tile.openstreetmap.de/{z}/{x}/{y}.png")
                     ->zoom(12)
                     ->afterStateUpdated(function ($state, $set) {
